@@ -56,4 +56,8 @@ def logout(request):
 
 
 def khoj(request):
-    return render(request, 'khoj.html')
+    form = None
+    context = {
+        'form': form
+    }
+    return render(request, 'khoj.html', context)

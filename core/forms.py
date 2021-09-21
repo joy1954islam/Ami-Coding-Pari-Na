@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Khoj
 
 
 class BaseUserForm(UserCreationForm):
@@ -23,3 +24,8 @@ class BaseUserForm(UserCreationForm):
         if user:
             raise forms.ValidationError('You can not use this email')
         return email
+
+
+class KhojForm(forms.Form):
+    input_values = forms.CharField(max_length=255)
+    search_value = forms.CharField(max_length=10)
