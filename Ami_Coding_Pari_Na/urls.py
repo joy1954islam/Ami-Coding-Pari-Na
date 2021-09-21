@@ -25,6 +25,7 @@ urlpatterns = [
     path('sign-up/', views.register, name='register'),
     path('log-out/', views.logout, name='logout'),
     path('khoj/', views.khoj, name='khoj'),
+    path('search/', views.search, name='search'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

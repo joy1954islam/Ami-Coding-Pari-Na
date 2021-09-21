@@ -1,4 +1,68 @@
 {% extends 'base.html' %}
 {% block content %}
-<a class="btn btn-primary" href="{% url 'logout' %}" role="button">Logout</a>
+
+
+
+<a class="btn btn-danger" href="{% url 'logout' %}" role="button">Logout</a>
+
+    <form id="FormID">
+        {% csrf_token %}
+        <div class="form-group row">
+           <label for="{{ form.input_values.id_for_label }}" class="col-sm-2 col-form-label">Input Values: </label>
+            <div class="col-sm-10">
+                <input type="text"  placeholder="Input Values"
+                   id="{{ form.input_values.id_for_label }}"
+                   class="form-control {% if form.input_values.errors %}invalid{% endif %} ms-form-control ms-round"
+                   name="{{ form.input_values.html_name }}"
+                   value="{{ form.input_values.value|default:'' }}">
+               {% if  form.input_values.errors %}
+               <div class="text-danger form-input-error">{{ form.input_values.errors|join:" " }}</div>
+               {% endif %}
+            </div>
+       </div>
+        <div class="form-group row">
+           <label for="{{ form.search_value.id_for_label }}" class="col-sm-2 col-form-label">Search Value: </label>
+            <div class="col-sm-10">
+                <input type="text"  placeholder="Search Value"
+                   id="{{ form.search_value.id_for_label }}"
+                   class="form-control {% if form.search_value.errors %}invalid{% endif %} ms-form-control ms-round"
+                   name="{{ form.search_value.html_name }}"
+                   value="{{ form.search_value.value|default:'' }}">
+               {% if  form.search_value.errors %}
+               <div class="text-danger form-input-error">{{ form.search_value.errors|join:" " }}</div>
+               {% endif %}
+            </div>
+       </div>
+        <button type="submit" class="btn btn-primary" name="submit" id="submit" >khoj</button>
+    </form>
+
+    <br><br>
+    <div id="data_result"></div>
+
+{% endblock %}
+{% block javascript %}
+ <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(e){
+      $("#submit").on('click',function (e) {
+        e.preventDefault();
+        var input_values = $("#id_input_values").val();
+        var search_value = $("#id_search_value").val();
+        var data = {
+             'input_values': input_values,
+             'search_value': search_value,
+        }
+        $.ajax({
+            url: '{% url "search" %}',
+            data: data,
+            dataType : 'json',
+            success : function(data){
+                console.log(data);
+                document.getElementById("data_result").innerHTML = `Result : ${data.data}`;
+            }
+        });
+      });
+    });
+  </script>
+
 {% endblock %}
