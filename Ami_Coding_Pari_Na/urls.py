@@ -21,6 +21,10 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.login, name='login'),
+    path('sign-up/', views.register, name='register'),
+    path('log-out/', views.logout, name='logout'),
+    path('khoj/', views.khoj, name='khoj'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
