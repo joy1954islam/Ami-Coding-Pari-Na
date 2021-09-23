@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Khoj
+from datetime import datetime
 
 
 class BaseUserForm(UserCreationForm):
@@ -29,3 +30,21 @@ class BaseUserForm(UserCreationForm):
 class KhojForm(forms.Form):
     input_values = forms.CharField(max_length=255)
     search_value = forms.CharField(max_length=10)
+
+
+class ApiForm(forms.Form):
+    start_datetime = forms.DateTimeField(
+        input_formats=['%Y-%m-%d %H:%M%S'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': '#datetimepicker1'
+        })
+    )
+    end_datetime = forms.DateTimeField(
+        input_formats=['%Y-%m-%d %H:%M%S'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': '#datetimepicker2'
+        })
+    )
+    user_id = forms.IntegerField(required=True)

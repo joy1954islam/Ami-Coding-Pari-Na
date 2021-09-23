@@ -90,3 +90,8 @@ Returns: All the Input Values the user ever entered within start_datetime(inclus
 
 
 
+How to Token Generate
+```
+http POST http://127.0.0.1:8000/api-token-auth/ username='mdjoyislam' password='171-35-1954'
+
+```
