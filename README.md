@@ -10,7 +10,7 @@ https://github.com/joy1954islam/Ami-Coding-Pari-Na.git
 
 * Next you Install Virtualenv
 	```pip install virtualenv```
-
+* Create a virtual environment name env
 	```virtualenv env```
 
 * Active Your Virtualenv
