@@ -47,4 +47,4 @@ class ApiForm(forms.Form):
             'data-target': '#datetimepicker2'
         })
     )
-    user_id = forms.IntegerField(required=True)
+

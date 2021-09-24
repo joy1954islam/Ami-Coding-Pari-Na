@@ -10,7 +10,7 @@
             </div>
         </div>
     {% endif %}
-    <form method="POST" action="{% url 'login' %}">
+    <form method="POST" action="{% url 'login' %}" autocomplete="off">
         {% csrf_token %}
             <h3 class="text-center py-2 bg-dark text-white col-md-9 col-sm-9">Login</h3>
             <div class="col-md-9 col-sm-9">
@@ -28,7 +28,6 @@
             <div class="col-md-9 col-sm-9">
                 <p>create an account ? <a href="{% url 'register' %}" class="loginhere-link">Signup here</a></p>
             </div>
-
     </form>
 
 {% endblock content %}

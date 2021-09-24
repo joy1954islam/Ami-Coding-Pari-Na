@@ -51,7 +51,7 @@ def register(request):
         form = BaseUserForm(request.POST)
         if form.is_valid():
             form.save()
-
+            return redirect('login')
     else:
         form = BaseUserForm()
     context = {
@@ -76,7 +76,7 @@ def khoj(request):
 
 def search(request):
     input_values = request.GET.get('input_values')     # take the input_values
-    input_values = [int(value.strip()) for value in input_values.split(',')]    #
+    input_values = [int(value.strip()) for value in input_values.split(',')]
     search_value = request.GET.get('search_value')     # take the search_value
     search_value = int(search_value.strip())     # convert search value in integer
 
@@ -96,13 +96,12 @@ def search(request):
         return JsonResponse({'data': data}, safe=False)
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes((IsAuthenticated, ))
 def KhojApi(request):
-    start_datetime = request.query_params['start_datetime']
-    end_datetime = request.query_params['end_datetime']
-    user_id = request.query_params['user_id']
-
+    start_datetime = request.POST['start_datetime']
+    end_datetime = request.POST['end_datetime']
+    user_id = request.user.id
     queryset = Khoj.objects.all()
     if start_datetime and end_datetime and user_id:
         queryset = queryset.filter(timestamp__range=[start_datetime, end_datetime], user_id__id=user_id)
