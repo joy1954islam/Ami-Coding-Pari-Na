@@ -30,7 +30,11 @@ https://github.com/joy1954islam/Ami-Coding-Pari-Na.git
 * Server Run Command
 ```python manage.py runserver```
 
+* How to Token Generate
+```
+http POST http://127.0.0.1:8000/api-token-auth/ username='mdjoyislam' password='171-35-1954'
 
+```
 # Project Description:
 
 
@@ -89,9 +93,3 @@ Returns: All the Input Values the user ever entered within start_datetime(inclus
 ```
 
 
-
-How to Token Generate
-```
-http POST http://127.0.0.1:8000/api-token-auth/ username='mdjoyislam' password='171-35-1954'
-
-```
